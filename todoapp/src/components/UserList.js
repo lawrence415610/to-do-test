@@ -1,3 +1,4 @@
+import ListItem from "./ListItem";
 import style from "./UserList.module.css";
 import { useState, useRef } from "react";
 
@@ -27,6 +28,8 @@ const UserList = () => {
 
   //TODO:
 
+  const items = [{ description: "sdfsdfsd", category: "CSS", id: Date.now() }];
+
   return (
     <div className={style.userlist}>
       <button className={style["userlist__delete"]}>Delete Selected</button>
@@ -41,24 +44,10 @@ const UserList = () => {
             <th>Operate</th>
           </tr>
         </thead>
-        <tbody className={style.body}>
-          <tr className={style["body__item"]}>
-            <td>
-              <input
-                className={style["body__item-input"]}
-                type="checkbox"
-              />
-            </td>
-            <td className={style["body__item-des"]}>Some Description</td>
-            <td className={style["body__item-type"]}>CSS</td>
-            <td>
-              <input
-                className={style["body__item-operate"]}
-                type="button"
-                value="Delete"
-              />
-            </td>
-          </tr>
+        <tbody className={style.tablebody}>
+          {items.map((item, index) => (
+            <ListItem key={index} item={item} />
+          ))}
         </tbody>
       </table>
     </div>
