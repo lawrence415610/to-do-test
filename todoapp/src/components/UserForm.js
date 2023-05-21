@@ -1,9 +1,9 @@
 import style from "./UserForm.module.css";
 import TodoContext from "../store/todoContext";
 import { useContext } from "react";
+import Button from "./Button";
 
 const UserForm = () => {
-
   const todoCtx = useContext(TodoContext);
 
   const submitHandler = (event) => {
@@ -15,15 +15,15 @@ const UserForm = () => {
     let isChecked = false;
     const item = { id, description, category, content, isChecked };
     todoCtx.addItem(item);
-  }
+  };
 
   return (
-    <form onSubmit={submitHandler} className={style.userform}>
+    <form id="form" onSubmit={submitHandler} className={style.userform}>
       <div className={style["userform__formgroup"]}>
         <label className={style["userform__label"]} htmlFor="description">
-          Description
+          Description <span>*</span>
         </label>
-        <input id="description" type="text" />
+        <input id="description" type="text" required />
       </div>
       <div className={style["userform__formgroup"]}>
         <label className={style["userform__label"]} htmlFor="category">
@@ -48,11 +48,7 @@ const UserForm = () => {
         ></textarea>
       </div>
       <div className={style["userform__formgroup"]}>
-        <input
-          className={style["userform__submit"]}
-          type="submit"
-          value="Submit"
-        />
+        <Button value="Submit" type="submit" />
       </div>
     </form>
   );

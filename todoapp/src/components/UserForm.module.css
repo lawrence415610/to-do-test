@@ -16,18 +16,5 @@
 
 .userform__label {
     margin-right: .5rem;
-}
-
-.userform__submit {
-    padding: .3rem .8rem;
-    border-radius: .2rem;
-    border: none;
-    color: orange;
     font-weight: bold;
-    cursor: pointer;
-}
-
-.userform__submit:hover {
-    color: white;
-    background-color: orange;
 }

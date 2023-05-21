@@ -3,3 +3,15 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.body__item-operate{
+    font-weight: bold;
+    color: pink;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.body__item-operate:hover{
+    color: red;
+}

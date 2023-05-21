@@ -2,6 +2,7 @@ import ListItem from "./ListItem";
 import style from "./UserList.module.css";
 import { useContext } from "react";
 import TodoContext from "../store/todoContext";
+import Button from "./Button";
 
 const UserList = () => {
   const todoCtx = useContext(TodoContext);
@@ -19,12 +20,12 @@ const UserList = () => {
 
   return (
     <div className={style.userlist}>
-      <button
-        className={style["userlist__delete"]}
+      <Button
+        value="Delete Selected"
+        type="button"
         onClick={handleDeleteSelected}
-      >
-        Delete Selected
-      </button>
+      />
+      
       <table className={style["userlist__table"]}>
         <thead>
           <tr>

@@ -10,7 +10,6 @@ const ListItem = ({ item }) => {
   };
 
   return (
-    //
     <tr className={style["body__item"]}>
       <td>
         <input
