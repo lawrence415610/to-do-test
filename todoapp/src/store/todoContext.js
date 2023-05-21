@@ -5,6 +5,7 @@ const TodoContext = createContext({
     addItem: (item) => {},
     deleteItem: (id) => {},
     toggleItem: (id) => {},
+    setItems: (items) => {},
 });
 
 export default TodoContext;
