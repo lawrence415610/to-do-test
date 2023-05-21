@@ -1,8 +1,10 @@
 import ListItem from "./ListItem";
 import style from "./UserList.module.css";
+import { useContext } from "react";
+import TodoContext from "../store/todoContext";
 import { useState, useRef } from "react";
 
-const UserList = ({ items, onItemDelete }) => {
+const UserList = () => {
   //   const [allchecked, setAllchecked] = useState(false);
   //   const [checkboxes, setCheckboxes] = useState([]);
 
@@ -26,6 +28,8 @@ const UserList = ({ items, onItemDelete }) => {
   //     setCheckboxes(newCheckboxes);
   //   };
 
+  const todoCtx = useContext(TodoContext);
+  const items = todoCtx.items;
 
   return (
     <div className={style.userlist}>
@@ -43,7 +47,7 @@ const UserList = ({ items, onItemDelete }) => {
         </thead>
         <tbody className={style.tablebody}>
           {items.map((item, index) => (
-            <ListItem key={index} item={item} deleteItem={onItemDelete} />
+            <ListItem key={index} item={item} />
           ))}
         </tbody>
       </table>

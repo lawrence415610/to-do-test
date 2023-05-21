@@ -1,0 +1,5 @@
+.body__item:hover{
+    color: orange;
+    font-weight: bold;
+    cursor: pointer;
+}

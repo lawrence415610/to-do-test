@@ -5,6 +5,7 @@ import AboutPage from "./pages/AboutPage";
 import DetailPage from "./pages/DetailPage";
 import Root from "./pages/Root";
 import ErrorPage from "./pages/404";
+import TodoProvider from "./store/todoProvider";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <TodoProvider>
+      <RouterProvider router={router} />
+    </TodoProvider>
+  );
 };
 
 export default App;

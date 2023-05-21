@@ -1,6 +1,10 @@
 import style from "./UserForm.module.css";
+import TodoContext from "../store/todoContext";
+import { useContext } from "react";
 
-const UserForm = ({onItemAdd}) => {
+const UserForm = () => {
+
+  const todoCtx = useContext(TodoContext);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -9,7 +13,7 @@ const UserForm = ({onItemAdd}) => {
     const category = event.target[1].value;
     const content = event.target[2].value;
     const item = { id, description, category, content };
-    onItemAdd(item);
+    todoCtx.addItem(item);
   }
 
   return (
