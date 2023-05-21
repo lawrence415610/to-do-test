@@ -17,6 +17,8 @@ const ListItem = ({ item }) => {
           name={item.id}
           className={style["body__item-input"]}
           type="checkbox"
+          onChange={() => todoCtx.toggleItem(item.id)}
+          checked={item.isChecked}
         />
       </td>
       <td className={style["body__item-des"]}>

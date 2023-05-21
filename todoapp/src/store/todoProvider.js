@@ -1,49 +1,80 @@
 import { useReducer } from "react";
 import TodoContext from "./todoContext";
 
-
 const initialState = {
-    items: [], 
+  items: [],
 };
 
 const todoReducer = (state, action) => {
-    if (action.type === "ADD") {
-        const updatedItems = state.items.concat(action.item);
+  if (action.type === "ADD") {
+    const updatedItems = state.items.concat(action.item);
+    return {
+      items: updatedItems,
+    };
+  }
+  if (action.type === "DELETE") {
+    const updatedItems = state.items.filter((item) => item.id !== action.id);
+    return {
+      items: updatedItems,
+    };
+  }
+
+  if (action.type === "TOGGLE") {
+    const updatedItems = state.items.map((item) => {
+      if (item.id === action.id) {
         return {
-            items: updatedItems,
+          ...item,
+          isChecked: !item.isChecked,
         };
-    }
-    if (action.type === "DELETE") {
-        const updatedItems = state.items.filter(item => item.id !== action.id);
-        return {
-            items: updatedItems,
-        };
-    }
-    return initialState;
+      }
+      return item;
+    });
+    return {
+      items: updatedItems,
+    };
+  }
+
+  if (action.type === "SET") {
+    return {
+      items: action.items,
+    };
+  }
+
+  return initialState;
 };
 
-const TodoProvider = props => {
-    const [todoState, dispatchTodoAction] = useReducer(todoReducer, initialState);
+const TodoProvider = (props) => {
+  const [todoState, dispatchTodoAction] = useReducer(todoReducer, initialState);
 
-    const addItemHandler = item => {
-        dispatchTodoAction({ type: "ADD", item: item });
-    };
+  const addItemHandler = (item) => {
+    dispatchTodoAction({ type: "ADD", item: item });
+  };
 
-    const deleteItemHandler = id => {
-        dispatchTodoAction({ type: "DELETE", id: id });
-    };
+  const deleteItemHandler = (id) => {
+    dispatchTodoAction({ type: "DELETE", id: id });
+  };
 
-    const todoContext = {
-        items: todoState.items,
-        addItem: addItemHandler,
-        deleteItem: deleteItemHandler,
-    };
+  const toggleItemHandler = (id) => {
+    dispatchTodoAction({ type: "TOGGLE", id: id });
+  };
 
-    return (
-        <TodoContext.Provider value={todoContext}>
-            {props.children}
-        </TodoContext.Provider>
-    );
+  const setItemsHandler = (items) => {
+    dispatchTodoAction({ type: "SET", items: items });
+  };
+
+  const todoContext = {
+    items: todoState.items,
+    addItem: addItemHandler,
+    deleteItem: deleteItemHandler,
+    toggleItem: toggleItemHandler,
+    setItems: setItemsHandler,
+  };
+
+  return (
+    <TodoContext.Provider value={todoContext}>
+      {props.children}
+    </TodoContext.Provider>
+  );
 };
 
 export default TodoProvider;

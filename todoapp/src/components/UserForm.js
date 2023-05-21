@@ -12,7 +12,8 @@ const UserForm = () => {
     const description = event.target[0].value;
     const category = event.target[1].value;
     const content = event.target[2].value;
-    const item = { id, description, category, content };
+    let isChecked = false;
+    const item = { id, description, category, content, isChecked };
     todoCtx.addItem(item);
   }
 
