@@ -1,0 +1,14 @@
+.userlist__delete{
+
+}
+
+.userlist__table{
+    
+}
+
+td,
+th {
+    white-space: nowrap;
+    padding: 20px;
+    text-align: center;
+}
