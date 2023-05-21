@@ -1,8 +1,19 @@
 import style from "./UserForm.module.css";
 
-const UserForm = () => {
+const UserForm = ({onItemAdd}) => {
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const id = Math.random().toString();
+    const description = event.target[0].value;
+    const category = event.target[1].value;
+    const content = event.target[2].value;
+    const item = { id, description, category, content };
+    onItemAdd(item);
+  }
+
   return (
-    <form className={style.userform}>
+    <form onSubmit={submitHandler} className={style.userform}>
       <div className={style["userform__formgroup"]}>
         <label className={style["userform__label"]} htmlFor="description">
           Description

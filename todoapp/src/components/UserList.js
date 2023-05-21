@@ -2,7 +2,7 @@ import ListItem from "./ListItem";
 import style from "./UserList.module.css";
 import { useState, useRef } from "react";
 
-const UserList = () => {
+const UserList = ({ items, onItemDelete }) => {
   //   const [allchecked, setAllchecked] = useState(false);
   //   const [checkboxes, setCheckboxes] = useState([]);
 
@@ -26,9 +26,6 @@ const UserList = () => {
   //     setCheckboxes(newCheckboxes);
   //   };
 
-  //TODO:
-
-  const items = [{ description: "sdfsdfsd", category: "CSS", id: Date.now() }];
 
   return (
     <div className={style.userlist}>
@@ -46,7 +43,7 @@ const UserList = () => {
         </thead>
         <tbody className={style.tablebody}>
           {items.map((item, index) => (
-            <ListItem key={index} item={item} />
+            <ListItem key={index} item={item} deleteItem={onItemDelete} />
           ))}
         </tbody>
       </table>
